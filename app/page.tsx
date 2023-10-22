@@ -23,7 +23,8 @@ const Home = () => {
             </h1>
 
             <p className='mt-6'>
-              Powerful, self-serve product and growth analytics to help you convert, engage, and retain more.
+              Powerful product and growth analytics. 
+              Elevate Your Business with PriceGoat Elite!
             </p>
 
             <Searchbar />
