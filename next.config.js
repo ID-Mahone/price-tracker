@@ -1,19 +1,12 @@
-/** @type {import('next').NextConfig} */
+/**@type {import('next').NextConfig} */
 const nextConfig = {
-    /* config options here */
-};
+  experimental: {
+    serverActions: true,
+    serverComponentsExternalPackages: ['mongoose']
+  },
+  images: {
+    domains: ['m.media.amazon.com']
+  }
+}
 
-module.exports = {
-    // other configurations...
-    serverRuntimeConfig: {
-      // add any server runtime configuration here
-    },
-    publicRuntimeConfig: {
-      // add any public runtime configuration here
-    },
-    // enable Server Actions
-    experimental: {
-      serverActions: true,
-    },
-  };
-  
+module.exports = nextConfig
