@@ -2,6 +2,8 @@ import { getProductById } from "@/lib/actions"
 import { redirect } from "next/navigation"
 import Image from "next/image"
 import Link from 'next/link';
+import { formatNumber } from "@/lib/utils";
+import PriceInfoCard from "@/components/PriceInfoCard";
 
 type Props = {
     params: { id: string }
@@ -71,6 +73,43 @@ const ProductDetails = async ({ params: { id } }: Props) => {
                                 />
                             </div>
                         </div>
+                    </div>
+
+                    <div className="product-info">
+                        <div className="flex flex-col gaap-2">
+                            <p className="text-[34px] text-secondary font-bold">
+                                {product.currency} {formatNumber(product.currentPrice)}
+                            </p>
+                            <p className="text-[21px] text-black opacity-50 line-through">
+                                {product.currency} {formatNumber(product.originalPrice)}
+                            </p>
+                        </div>
+
+                        <div className="flex flex-col gap-4">
+                            <div className="flex gap-3">
+                                <div className="product-stars">
+                                    <Image
+                                        src="/assets/icons/star.svg"
+                                        alt="star"
+                                        width={16}
+                                        height={16}
+                                    />
+                                    <p className="text-sm text-secondary font-semibold">
+                                        {product.reviewsCount} Reviews
+                                    </p>
+                                </div>
+                            </div>
+                            <p className="text-sm text-black opacity-50">
+                                <span className="text-primary-green font-semibold">93%</span> of buyers have recommeded this.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="m-7 flex flex-col gap-5">
+                        <div className="flex gap-5 flex-wrap">
+                        <PriceInfoCard></PriceInfoCard>
+                        </div>
+
                     </div>
                 </div>
             </div>
