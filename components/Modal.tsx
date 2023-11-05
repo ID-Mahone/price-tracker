@@ -3,9 +3,14 @@
 import { FormEvent, Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
+import { addUserEmailToProduct } from '@/lib/actions'
 
-const Modal = () => {
-    let [isOpen, setIsOpen] = useState(true)
+interface Props {
+    productId: string
+}
+
+const Modal = ({ productId }: Props) => {
+    let [isOpen, setIsOpen] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [email, setEmail] = useState('');
 
@@ -13,7 +18,7 @@ const Modal = () => {
         e.preventDefault();
         setIsSubmitting(true)
 
-        // addUserEmailToProduct(productId, email);
+        await addUserEmailToProduct(productId, email);
 
         setIsSubmitting(false)
         setEmail('')
@@ -23,7 +28,7 @@ const Modal = () => {
 
     const openModal = () => setIsOpen(true);
 
-    const closeModal = () => setIsOpen(true);
+    const closeModal = () => setIsOpen(false);
     return (
         <div>
             <>

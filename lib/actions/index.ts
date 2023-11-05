@@ -1,10 +1,12 @@
 "use server"
 
 import { revalidatePath } from "next/cache";
-import Product from "../models/product.models";
+import Product from "../models/product.model";
 import { connectToDB } from "../mongoose";
 import { scrapeAmazonProduct } from "../scraper";
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
+import { User } from "@/types";
+import { generateEmailBody, sendEmail } from "../nodemailer";
 
 export async function scrapeAndStoreProduct(productUrl: string) {
     if (!productUrl) return;
@@ -34,16 +36,16 @@ export async function scrapeAndStoreProduct(productUrl: string) {
                 averagePrice: getAveragePrice(updatedPriceHistory),
             }
         }
+
         const newProduct = await Product.findOneAndUpdate(
             { url: scrapedProduct.url },
             product,
-            { upsert: true, new: true },
+            { upsert: true, new: true }
         );
 
         revalidatePath(`/products/${newProduct._id}`);
-    } catch (error) {
-        console.log(error);
-
+    } catch (error: any) {
+        throw new Error(`Failed to create/update product: ${error.message}`)
     }
 }
 
@@ -59,7 +61,6 @@ export async function getProductById(productId: string) {
     } catch (error) {
         console.log(error);
     }
-
 }
 
 export async function getAllProducts() {
@@ -98,16 +99,18 @@ export async function addUserEmailToProduct(productId: string, userEmail: string
 
         if (!product) return;
 
-        const userExist = product.users.some((user: User) => userEmail.email === userEmail);
+        const userExists = product.users.some((user: User) => user.email === userEmail);
 
-        if (!userExist) {
-            product.user.push({ email: userEmail });
+        if (!userExists) {
+            product.users.push({ email: userEmail });
 
             await product.save();
 
-            const emailContent = generateEmailBody(product, "Welcome");
+            const emailContent = await generateEmailBody(product, "WELCOME");
+
+            await sendEmail(emailContent, [userEmail]);
         }
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 }
