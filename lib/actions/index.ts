@@ -91,3 +91,23 @@ export async function getSimilarProducts(productId: string) {
         console.log(error);
     }
 }
+
+export async function addUserEmailToProduct(productId: string, userEmail: string) {
+    try {
+        const product = await Product.findById(productId);
+
+        if (!product) return;
+
+        const userExist = product.users.some((user: User) => userEmail.email === userEmail);
+
+        if (!userExist) {
+            product.user.push({ email: userEmail });
+
+            await product.save();
+
+            const emailContent = generateEmailBody(product, "Welcome");
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
