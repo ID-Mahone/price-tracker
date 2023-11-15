@@ -23,7 +23,6 @@ const Modal = ({ productId }: Props) => {
         setIsSubmitting(false)
         setEmail('')
         closeModal()
-
     }
 
     const openModal = () => setIsOpen(true);
