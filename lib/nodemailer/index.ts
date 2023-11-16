@@ -1,7 +1,7 @@
 "use server"
 
-import { EmailContent, EmailProductInfo, NotificationType } from '@/types';
 import nodemailer from 'nodemailer';
+import { EmailContent, EmailProductInfo, NotificationType } from '@/types';
 
 const Notification = {
   WELCOME: 'WELCOME',
@@ -9,7 +9,6 @@ const Notification = {
   LOWEST_PRICE: 'LOWEST_PRICE',
   THRESHOLD_MET: 'THRESHOLD_MET',
 }
-
 export async function generateEmailBody(
   product: EmailProductInfo,
   type: NotificationType
@@ -29,7 +28,7 @@ export async function generateEmailBody(
       subject = `Welcome to Price Tracking for ${shortenedTitle}`;
       body = `
         <div>
-          <h2>Welcome to PriceWise 🚀</h2>
+          <h2>Welcome to PriceGoat 🚀</h2>
           <p>You are now tracking ${product.title}.</p>
           <p>Here's an example of how you'll receive updates:</p>
           <div style="border: 1px solid #ccc; padding: 10px; background-color: #f8f8f8;">
@@ -78,22 +77,22 @@ export async function generateEmailBody(
   }
 
   return { subject, body };
-}
+} 
 
 const transporter = nodemailer.createTransport({
   pool: true,
   service: 'hotmail',
   port: 2525,
   auth: {
-    user: 'pricegoat@outlook.com',
-    pass: process.env.EMAIL_PASSWORD,
+    user: 'pricegoat@outlook.de',
+    pass: process.env.EMAIL_PASSWORD
   },
-  maxConnections: 1
+  maxConnection: 1
 })
 
 export const sendEmail = async (emailContent: EmailContent, sendTo: string[]) => {
   const mailOptions = {
-    from: 'pricegoat@outlook.com',
+    from: 'pricegoat@outlook.de',
     to: sendTo,
     html: emailContent.body,
     subject: emailContent.subject,
