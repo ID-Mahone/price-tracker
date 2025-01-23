@@ -1,40 +1,101 @@
+# Price Tracker
 
-# price-tracker
-=======
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Price Tracker is a web application designed to monitor and track product prices over time. Built with Next.js, it offers a seamless and efficient user experience.
+
+## Features
+
+- **Real-time Price Monitoring**: Keep tabs on product prices and receive updates as they change.
+- **Historical Data Analysis**: View and analyze price trends over time.
+- **User-friendly Interface**: Navigate effortlessly through a clean and intuitive design.
 
 ## Getting Started
 
-First, run the development server:
+To get a local copy of the project up and running, follow these steps:
+
+### Prerequisites
+
+- **Node.js**: Ensure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org/).
+
+### Installation
+
+1. **Clone the Repository**:
+
+   ```bash
+   git clone https://github.com/ID-Mahone/price-tracker.git
+   ```
+
+2. **Navigate to the Project Directory**:
+
+   ```bash
+   cd price-tracker
+   ```
+
+3. **Install Dependencies**:
+
+   Using npm:
+
+   ```bash
+   npm install
+   ```
+
+   Or with yarn:
+
+   ```bash
+   yarn install
+   ```
+
+### Running the Development Server
+
+Start the development server with:
+
+Using npm:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Or with yarn:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application. The page will automatically reload if you make edits.
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+The project adheres to the standard Next.js structure:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+/price-tracker
+├── app
+│   └── page.tsx          # Main page component
+├── components            # Reusable UI components
+├── lib                   # Utility functions and libraries
+├── public                # Public assets
+├── types                 # TypeScript types
+├── .vscode               # VSCode settings
+├── .env                  # Environment variables
+├── .gitignore            # Git ignore file
+├── next.config.js        # Next.js configuration
+├── package.json          # Project metadata and scripts
+├── postcss.config.js     # PostCSS configuration
+├── tailwind.config.ts    # Tailwind CSS configuration
+└── tsconfig.json         # TypeScript configuration
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Technologies Used
 
-## Deploy on Vercel
+- **Next.js**: A React framework for server-side rendering and static site generation.
+- **Tailwind CSS**: A utility-first CSS framework for styling.
+- **TypeScript**: A superset of JavaScript that adds static typing.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
->>>>>>> 4ff95e8 (Initial commit from Create Next App)
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any inquiries or feedback, please contact [ID-Mahone](https://github.com/ID-Mahone).
+
